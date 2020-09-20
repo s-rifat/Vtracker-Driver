@@ -15,7 +15,7 @@
             android:layout_height="wrap_content">
             
             <ImageView
-                android:src="@drawable/ic_account_circle_black_24dp"
+                android:src="@drawable/ic_baseline_directions_bus_24"
                 android:layout_width="50dp"
                 android:layout_height="50dp" />
             <LinearLayout

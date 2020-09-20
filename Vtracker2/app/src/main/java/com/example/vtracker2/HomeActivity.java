@@ -39,6 +39,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -71,14 +72,14 @@ public class HomeActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(HomeActivity.this,AllPeopleActivity.class));
 
             }
-        });
+        });*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -202,7 +203,7 @@ public class HomeActivity extends AppCompatActivity
         adapter = new FirebaseRecyclerAdapter<User, UserViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull UserViewHolder holder, int position, @NonNull final User model) {
-                holder.txt_user_email.setText(new StringBuilder(model.getEmail()));
+                holder.txt_user_email.setText(new StringBuilder(model.getRout ()));
 
                 holder.setiRecyclerItemClickListener(new IRecyclerItemClickListener() {
                     @Override
@@ -329,15 +330,11 @@ public class HomeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_find_people) {
-            startActivity(new Intent(HomeActivity.this,AllPeopleActivity.class));
-            // Handle the camera action
-        } else if (id == R.id.nav_add_people) {
-
-            startActivity(new Intent(HomeActivity.this,FriendRequestActivity.class));
-
-
-        } else if (id == R.id.nav_sign_out) {
+        if (id == R.id.nav_sign_out) {
+            FirebaseAuth.getInstance().signOut();
+            Toast.makeText(HomeActivity.this, "Successfully logged out", Toast.LENGTH_SHORT).show();
+            finish();
+            startActivity(new Intent(HomeActivity.this,MainActivity.class));
 
         }
 

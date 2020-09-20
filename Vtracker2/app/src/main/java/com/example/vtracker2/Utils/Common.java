@@ -19,6 +19,7 @@ public class Common {
     public static final String TO_NAME = "ToName";
     public static final String FRIEND_REQUEST = "FriendRequests" ;
     public static final String Driver_LOCATION = "driverLocation" ;
+    public static final String ROUT= "Bus1 - Location1 - Location2 - Location3" ;
     public static User loggedDriver;
     public static User trackingDriver;
 

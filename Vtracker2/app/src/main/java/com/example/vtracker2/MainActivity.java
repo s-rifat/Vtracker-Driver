@@ -30,6 +30,7 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import io.paperdb.Paper;
@@ -104,10 +105,17 @@ public class MainActivity extends AppCompatActivity {
 
                                     if (!dataSnapshot.child(firebaseUser.getUid()).exists()) //if key uid does not exist
                                     {
-                                        Common.loggedDriver = new User(firebaseUser.getUid(), firebaseUser.getEmail());
+                                        Common.loggedDriver = new User(firebaseUser.getUid(), firebaseUser.getEmail(),"Bus1 - Location1 - Location2 - Location3","Bus1");
                                         //Add to database
+
                                         driver_information.child(Common.loggedDriver.getUid())
                                                 .setValue(Common.loggedDriver);
+
+                                        DatabaseReference df = FirebaseDatabase.getInstance ().getReference (Common.Driver_INFORMATION)
+                                                .child (Common.loggedDriver.getUid ()).child (Common.ACCEPT_LIST).child (Common.loggedDriver.getUid ());
+                                        df.setValue (Common.loggedDriver);
+
+
 
                                     }
                                 } else //if user available

@@ -95,7 +95,7 @@ public class TrackingActivity extends FragmentActivity implements OnMapReadyCall
             //Add marker
 
             LatLng userMarker = new LatLng(location.getLatitude(),location.getLongitude());
-
+            mMap.clear ();
             mMap.addMarker(new MarkerOptions().position(userMarker)
                     .title(Common.trackingDriver.getEmail())
                    .snippet(Common.getDateFormatted(Common.convertTimeStampToDate(location.getTime()))));
